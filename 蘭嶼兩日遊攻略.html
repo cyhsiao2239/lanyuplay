@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蘭嶼兩日漫遊 · 8/29–8/30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#0a2338;
+    --navy:#0f2f4b;
+    --ocean:#1c6e8c;
+    --ocean-light:#5aa9c4;
+    --sand:#f2e8d5;
+    --sand-warm:#ece0c8;
+    --paper:#faf6ec;
+    --coral:#e0592b;
+    --tatala-red:#b23327;
+    --charcoal:#211d17;
+    --ink-soft:#4a453c;
+    --gold:#d3a327;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--charcoal);
+    font-family:"Noto Sans TC","PingFang TC",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:"Noto Serif TC","Noto Sans TC",serif;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- decorative tatala eye motif ---------- */
+  .tatala{display:inline-block;}
+  .tatala svg{display:block;}
+
+  /* ---------- wave divider ---------- */
+  .wave{display:block;width:100%;height:56px;line-height:0;}
+  .wave svg{width:100%;height:100%;display:block;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(90,169,196,0.35), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 0%, rgba(211,163,39,0.18), transparent 55%),
+      linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+    color:var(--sand);
+    padding:64px 0 40px;
+    overflow:hidden;
+  }
+  .hero-eyes{
+    position:absolute; inset:0; pointer-events:none; opacity:0.5;
+  }
+  .hero-top{
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;
+    font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--ocean-light);
+    margin-bottom:36px;
+  }
+  .hero-top .tag{
+    border:1px solid rgba(90,169,196,0.5); padding:6px 14px; border-radius:999px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .hero h1{
+    font-size:clamp(38px,7vw,72px);
+    line-height:1.08;
+    margin:0 0 18px;
+    font-weight:900;
+    letter-spacing:.01em;
+  }
+  .hero h1 .accent{color:var(--coral);}
+  .hero p.sub{
+    font-size:17px; color:var(--sand-warm); max-width:560px; line-height:1.85; margin:0 0 34px;
+    font-weight:400;
+  }
+  .weather-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .weather-card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(242,232,213,0.18);
+    border-radius:16px;
+    padding:18px 22px;
+    min-width:190px;
+    backdrop-filter:blur(6px);
+  }
+  .weather-card .wc-date{font-size:12px; letter-spacing:.1em; color:var(--ocean-light); text-transform:uppercase; margin-bottom:8px;}
+  .weather-card .wc-temp{font-size:28px; font-weight:700; font-family:"Noto Serif TC",serif; margin-bottom:4px;}
+  .weather-card .wc-rain{font-size:13px; color:var(--sand-warm); display:flex; align-items:center; gap:6px;}
+  .weather-card .wc-rain.high{color:#ffb98a;}
+  .weather-card .wc-rain b{color:var(--coral); font-weight:700;}
+
+  /* ---------- SECTION shell ---------- */
+  section{padding:64px 0;}
+  .eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--ocean);
+    font-weight:700; margin-bottom:14px;
+  }
+  .sec-title{font-size:clamp(26px,4vw,38px); font-weight:900; margin:0 0 8px; color:var(--navy);}
+  .sec-desc{color:var(--ink-soft); font-size:15.5px; line-height:1.8; max-width:640px; margin:0 0 36px;}
+
+  /* ---------- info strip ---------- */
+  .info-strip{
+    background:var(--sand);
+    border-top:1px solid var(--sand-warm);
+    border-bottom:1px solid var(--sand-warm);
+  }
+  .info-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+  }
+  .info-item{
+    padding:26px 22px; border-right:1px solid var(--sand-warm);
+  }
+  .info-item:last-child{border-right:none;}
+  .info-item .ii-label{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--ocean); font-weight:700; margin-bottom:6px;}
+  .info-item .ii-value{font-size:16px; font-weight:600; line-height:1.5;}
+  .info-item .ii-sub{font-size:13px; color:var(--ink-soft); margin-top:2px;}
+
+  /* ---------- Day tabs / timeline ---------- */
+  .day-tabs{display:flex; gap:10px; margin-bottom:36px; flex-wrap:wrap;}
+  .day-tab{
+    font-family:"Noto Serif TC",serif;
+    font-weight:700; font-size:16px;
+    padding:12px 26px; border-radius:999px;
+    border:2px solid var(--navy);
+    background:transparent; color:var(--navy);
+    cursor:pointer; transition:all .2s ease;
+  }
+  .day-tab.active{background:var(--navy); color:var(--sand);}
+  .day-tab .rain-flag{
+    font-size:11px; margin-left:8px; padding:2px 8px; border-radius:999px; background:var(--coral); color:#fff; font-family:"Noto Sans TC",sans-serif;
+  }
+  .day-tab.active .rain-flag{background:var(--gold); color:var(--navy-deep);}
+
+  .timeline{position:relative; display:none;}
+  .timeline.active{display:block;}
+  .timeline::before{
+    content:""; position:absolute; left:64px; top:8px; bottom:8px; width:2px;
+    background:repeating-linear-gradient(180deg, var(--ocean-light) 0 6px, transparent 6px 12px);
+  }
+  .t-item{
+    position:relative; display:grid; grid-template-columns:64px 1fr; gap:28px; padding:0 0 34px;
+  }
+  .t-item:last-child{padding-bottom:0;}
+  .t-time{
+    font-family:"Noto Serif TC",serif; font-weight:700; font-size:15px; color:var(--ocean);
+    text-align:right; padding-top:2px; position:relative;
+  }
+  .t-time::after{
+    content:""; position:absolute; right:-33px; top:5px; width:12px; height:12px; border-radius:50%;
+    background:var(--paper); border:3px solid var(--coral);
+  }
+  .t-body{
+    background:#fff; border:1px solid var(--sand-warm); border-radius:14px; padding:18px 22px;
+    box-shadow:0 2px 10px rgba(10,35,56,0.04);
+  }
+  .t-body h4{margin:0 0 6px; font-size:17px; font-family:"Noto Serif TC",serif; font-weight:700; color:var(--navy);}
+  .t-body p{margin:0; font-size:14.5px; color:var(--ink-soft); line-height:1.75;}
+  .t-tags{margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;}
+  .t-tag{font-size:11.5px; padding:3px 10px; border-radius:999px; background:var(--sand); color:var(--ocean); font-weight:600;}
+  .t-tag.alt{background:#fbe9df; color:var(--coral);}
+
+  /* ---------- attraction grid ---------- */
+  .spot-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:22px;
+  }
+  .spot-card{
+    background:#fff; border-radius:16px; overflow:hidden; border:1px solid var(--sand-warm);
+    transition:transform .2s ease, box-shadow .2s ease; position:relative;
+  }
+  .spot-card:hover{transform:translateY(-4px); box-shadow:0 14px 28px rgba(10,35,56,0.1);}
+  .spot-num{
+    position:absolute; top:14px; left:14px; width:34px; height:34px; border-radius:50%;
+    background:var(--navy); color:var(--sand); display:flex; align-items:center; justify-content:center;
+    font-family:"Noto Serif TC",serif; font-weight:700; font-size:14px; z-index:2;
+  }
+  .spot-img{height:8px; background:linear-gradient(90deg, var(--ocean), var(--ocean-light) 50%, var(--gold));}
+  .spot-body{padding:44px 20px 20px;}
+  .spot-body h4{margin:0 0 8px; font-size:18px; font-family:"Noto Serif TC",serif; font-weight:700;}
+  .spot-body p{margin:0; font-size:14px; color:var(--ink-soft); line-height:1.75;}
+  .spot-meta{margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;}
+  .spot-chip{font-size:11.5px; padding:3px 9px; border-radius:6px; background:var(--sand); color:var(--charcoal); font-weight:600;}
+  .spot-chip.warn{background:#fdeee7; color:var(--coral);}
+
+  /* ---------- food map ---------- */
+  .food-route{
+    display:flex; gap:8px; overflow-x:auto; padding-bottom:14px; margin-bottom:32px;
+    scrollbar-width:thin;
+  }
+  .food-route .fr-node{
+    flex:0 0 auto; font-size:13px; font-weight:700; color:var(--ocean);
+    padding:8px 16px; border:1.5px dashed var(--ocean-light); border-radius:999px; white-space:nowrap;
+  }
+  .food-route .fr-arrow{flex:0 0 auto; color:var(--ocean-light); align-self:center; font-size:15px;}
+
+  .village-block{margin-bottom:30px; border-left:3px solid var(--coral); padding-left:22px;}
+  .village-block h3{
+    font-size:20px; margin:0 0 4px; font-family:"Noto Serif TC",serif; font-weight:700; color:var(--navy);
+    display:flex; align-items:center; gap:10px;
+  }
+  .village-block .v-note{font-size:13px; color:var(--ink-soft); margin-bottom:16px;}
+  .food-list{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px;}
+  .food-item{
+    background:#fff; border:1px solid var(--sand-warm); border-radius:12px; padding:14px 16px;
+  }
+  .food-item .fi-name{font-weight:700; font-size:15px; margin-bottom:4px;}
+  .food-item .fi-desc{font-size:13px; color:var(--ink-soft); line-height:1.6; margin-bottom:6px;}
+  .food-item .fi-time{font-size:12px; color:var(--ocean); font-weight:600;}
+
+  /* ---------- rainy plan ---------- */
+  .rain-section{
+    background:
+      radial-gradient(ellipse 800px 400px at 90% 0%, rgba(28,110,140,0.35), transparent 60%),
+      linear-gradient(180deg, var(--navy-deep), var(--navy));
+    color:var(--sand);
+  }
+  .rain-section .eyebrow{color:var(--ocean-light);}
+  .rain-section .sec-title{color:#fff;}
+  .rain-section .sec-desc{color:var(--sand-warm);}
+  .rain-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:18px;}
+  .rain-card{
+    background:rgba(255,255,255,0.05); border:1px solid rgba(242,232,213,0.14); border-radius:16px;
+    padding:22px;
+  }
+  .rain-card .rc-icon{
+    width:38px; height:38px; border-radius:10px; background:rgba(211,163,39,0.15);
+    display:flex; align-items:center; justify-content:center; margin-bottom:14px;
+    color:var(--gold); font-size:18px; font-weight:700; font-family:"Noto Serif TC",serif;
+  }
+  .rain-card h4{margin:0 0 8px; font-size:16.5px; font-family:"Noto Serif TC",serif; font-weight:700;}
+  .rain-card p{margin:0; font-size:13.5px; color:var(--sand-warm); line-height:1.75;}
+
+  /* ---------- tips ---------- */
+  .tip-list{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px;}
+  .tip-item{display:flex; gap:14px; align-items:flex-start;}
+  .tip-mark{
+    flex:0 0 auto; width:30px; height:30px; border-radius:50%; background:var(--coral); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:"Noto Serif TC",serif; font-weight:700; font-size:14px;
+  }
+  .tip-item p{margin:0; font-size:14.5px; line-height:1.75; color:var(--ink-soft);}
+  .tip-item b{color:var(--charcoal);}
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--navy-deep); color:var(--sand-warm); padding:52px 0 30px;
+  }
+  .foot-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; margin-bottom:30px;}
+  .foot-brand{max-width:380px;}
+  .foot-brand h3{color:#fff; font-size:22px; margin:0 0 10px;}
+  .foot-brand p{font-size:14px; line-height:1.8; color:var(--sand-warm); margin:0;}
+  .foot-stay{font-size:14px; line-height:2;}
+  .foot-stay .fs-label{color:var(--ocean-light); font-size:12px; letter-spacing:.1em; text-transform:uppercase;}
+  .foot-bottom{border-top:1px solid rgba(242,232,213,0.15); padding-top:20px; font-size:12.5px; color:rgba(242,232,213,0.5); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  @media (max-width:760px){
+    .info-grid{grid-template-columns:repeat(2,1fr);}
+    .info-item:nth-child(2){border-right:none;}
+    .timeline::before{left:44px;}
+    .t-item{grid-template-columns:44px 1fr; gap:16px;}
+    .t-time::after{right:-23px;}
+    section{padding:48px 0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <span class="tag">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M2 12h20M12 2v20" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.4"/></svg>
+        Pongso no Tao · 人之島
+      </span>
+      <span class="tag">5 人小隊 · 小豆丁民宿</span>
+    </div>
+
+    <h1>蘭嶼<br>兩日漫遊<span class="accent">。</span></h1>
+    <p class="sub">8/29（六）— 8/30（日），朗島出發，環島追浪、追日出、追一頓好吃的飛魚料理。這份攻略把景點、美食和雨天備案都排好了，帶著手機跟朋友出發就對了。</p>
+
+    <div class="weather-row">
+      <div class="weather-card">
+        <div class="wc-date">DAY 1 · 8/29（六）</div>
+        <div class="wc-temp">26.7° – 28.6°C</div>
+        <div class="wc-rain">☁️ 降雨機率 <b>20%</b> · 適合海邊行程</div>
+      </div>
+      <div class="weather-card">
+        <div class="wc-date">DAY 2 · 8/30（日）</div>
+        <div class="wc-temp">26.1° – 27.3°C</div>
+        <div class="wc-rain high">🌧️ 降雨機率 <b>60%</b> · 備妥雨天方案</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="wave" style="background:var(--navy);">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C150,60 350,0 600,25 C850,50 1050,5 1200,30 L1200,60 L0,60 Z" fill="#f2e8d5"/></svg>
+</div>
+
+<!-- ============ INFO STRIP ============ -->
+<div class="info-strip">
+  <div class="wrap">
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="ii-label">住宿</div>
+        <div class="ii-value">小豆丁民宿</div>
+        <div class="ii-sub">台東縣蘭嶼鄉朗島235-1號</div>
+      </div>
+      <div class="info-item">
+        <div class="ii-label">交通建議</div>
+        <div class="ii-value">租機車環島</div>
+        <div class="ii-sub">環島公路全長約37公里，慢騎約2小時</div>
+      </div>
+      <div class="info-item">
+        <div class="ii-label">行程重點</div>
+        <div class="ii-value">秘境 · 浮潛 · 日出日落</div>
+        <div class="ii-sub">Day1 晴 → 海邊活動優先</div>
+      </div>
+      <div class="info-item">
+        <div class="ii-label">請注意</div>
+        <div class="ii-value">尊重達悟文化</div>
+        <div class="ii-sub">部分洞穴、地下屋為部落禁忌地</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ITINERARY ============ -->
+<section id="itinerary">
+  <div class="wrap">
+    <div class="eyebrow">
+      <span class="tatala">
+        <svg width="18" height="18" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M20 2 L38 20 L20 38 L2 20 Z"/><path d="M20 10 L30 20 L20 30 L10 20 Z"/><circle cx="20" cy="20" r="3" fill="currentColor" stroke="none"/></g></svg>
+      </span>
+      行程總覽
+    </div>
+    <h2 class="sec-title">兩天一夜，怎麼排</h2>
+    <p class="sec-desc">Day 1 降雨機率較低，把浮潛、秘境、看夕陽這些「靠天吃飯」的行程排進去；Day 2 降雨機率上升到 60%，行程留了彈性，中午前後如果下雨可直接切到後面的雨天備案。</p>
+
+    <div class="day-tabs">
+      <button class="day-tab active" data-day="1" onclick="showDay(1)">Day 1 · 8/29（六）<span class="rain-flag">降雨 20%</span></button>
+      <button class="day-tab" data-day="2" onclick="showDay(2)">Day 2 · 8/30（日）<span class="rain-flag">降雨 60%</span></button>
+    </div>
+
+    <!-- DAY 1 -->
+    <div class="timeline active" id="timeline-1">
+      <div class="t-item">
+        <div class="t-time">10:30</div>
+        <div class="t-body">
+          <h4>抵達蘭嶼，租機車</h4>
+          <p>開元港或蘭嶼機場入境，直接在椰油辦理機車租借，5 人建議租 3 台，行李先綁好防水袋。</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-time">12:00</div>
+        <div class="t-body">
+          <h4>午餐：東清覓食</h4>
+          <p>「人魚和貓」吃簡餐配招牌米酒奶茶，或「東清以斯拉偏泰式料理」吃泰式烤肉飯，都是海景第一排。</p>
+          <div class="t-tags"><span class="t-tag">美食</span></div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-time">14:00</div>
+        <div class="t-body">
+          <h4>民宿 Check-in</h4>
+          <p>小豆丁民宿位於朗島部落外圍，全套房設計、大景觀窗台，先放行李、休息一下再出發。</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-time">15:30</div>
+        <div class="t-body">
+          <h4>東清秘境 + 乳頭山步道</h4>
+          <p>秘境水由淺入深、碧綠清澈，記得穿鞋防滑；接著爬乳頭山木棧道（來回約30–40分鐘），山頂可俯瞰東清灣。</p>
+          <div class="t-tags"><span class="t-tag">秘境</span><span class="t-tag alt">需穿鞋</span></div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-time">17:30</div>
+        <div class="t-body">
+          <h4>情人洞 · 燕子口</h4>
+          <p>天然海蝕洞望向海平面是絕美取景點，一旁的燕子口（一線天）較隱密，天氣好的話值得順路找找。</p>
+          <div class="t-tags"><span class="t-tag">拍照</span></div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-time">18:30</div>
+        <div class="t-body">
+          <h4>晚餐：東清夜市</h4>
+          <p>觀光季每日 15:00–22:00 營業，必吃小米甜甜圈、有機地瓜餅，也可以買一盒醃飛魚配啤酒。</p>
+          <div class="t-tags"><span class="t-tag">美食</span></div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-time">20:00</div>
+        <div class="t-body">
+          <h4>夜間生態導覽</h4>
+          <p>可向小豆丁民宿預約蘭嶼角鴞、夜間昆蟲生態導覽，回程回發呆亭躺著看星空收尾。</p>
+          <div class="t-tags"><span class="t-tag">需預約</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="timeline" id="timeline-2">
+      <div class="t-item">
+        <div class="t-time">07:00</div>
+        <div class="t-body">
+          <h4>民宿早餐</h4>
+          <p>房價已含早餐，一樓自助吧台也有咖啡機，慢慢吃、看今天雲量再決定行程順序。</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-time">08:30</div>
+        <div class="t-body">
+          <h4>浮潛 / SUP（視天候）</h4>
+          <p>民宿自營的路易浮潛就在附近，若當下無雨無強風可以下水；降雨機率偏高，建議一早先問教練評估。</p>
+          <div class="t-tags"><span class="t-tag">需視天候</span><span class="t-tag alt">雨天可改備案</span></div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-time">10:30</div>
+        <div class="t-body">
+          <h4>環島公路：軍艦岩 · 雙獅岩</h4>
+          <p>沿路眺望外形酷似軍艦的軍艦岩，附近海域是浮潛觀賞魚群的熱點；雙獅岩則是經典地標，適合下車拍照。</p>
+          <div class="t-tags"><span class="t-tag">環島</span></div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-time">12:30</div>
+        <div class="t-body">
+          <h4>午餐：紅頭 / 椰油</h4>
+          <p>紅頭「蘭嶼商店（徐媽媽的店）」買熟食伴手禮，或回椰油吃「阿東飛魚刈包」，把在地招牌都嚐過一輪。</p>
+          <div class="t-tags"><span class="t-tag">美食</span></div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-time">14:00</div>
+        <div class="t-body">
+          <h4>野銀冷泉戲水 / 或直接切雨天方案</h4>
+          <p>晴天可到野銀冷泉泡水消暑，山泉與海水在此交會，很涼快；若開始下雨就直接前往下方「雨天備案」清單。</p>
+          <div class="t-tags"><span class="t-tag alt">彈性行程</span></div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-time">16:00</div>
+        <div class="t-body">
+          <h4>青青草原看夕陽（天氣允許時）</h4>
+          <p>西南方的草原步道，走到底就是離日落最近的地方，是蘭嶼最有名的日落點之一。</p>
+          <div class="t-tags"><span class="t-tag">日落</span></div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-time">18:00</div>
+        <div class="t-body">
+          <h4>採買特產 + 準備離島</h4>
+          <p>回椰油補貨飛魚乾、地瓜酥當伴手禮，整理行李，結束這趟兩日一夜的蘭嶼小旅行。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--paper); transform:scaleY(-1);">
+  <svg viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0,20 C300,0 600,40 900,20 C1050,10 1150,10 1200,20 L1200,40 L0,40 Z" fill="var(--sand)"/></svg>
+</div>
+
+<!-- ============ ATTRACTIONS ============ -->
+<section id="spots" style="background:var(--sand);">
+  <div class="wrap">
+    <div class="eyebrow">
+      <span class="tatala"><svg width="18" height="18" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M20 2 L38 20 L20 38 L2 20 Z"/><path d="M20 10 L30 20 L20 30 L10 20 Z"/><circle cx="20" cy="20" r="3" fill="currentColor" stroke="none"/></g></svg></span>
+      景點推薦
+    </div>
+    <h2 class="sec-title">10 個值得停下來的地方</h2>
+    <p class="sec-desc">照環島路線大致排序，picking 幾個就能組成很滿的一天，不用全部跑完。</p>
+
+    <div class="spot-grid" id="spot-grid"></div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--paper);">
+  <svg viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0,20 C300,40 600,0 900,20 C1050,30 1150,30 1200,20 L1200,40 L0,40 Z" fill="var(--sand)" style="transform:scaleY(-1); transform-origin:center;"/></svg>
+</div>
+
+<!-- ============ FOOD MAP ============ -->
+<section id="food">
+  <div class="wrap">
+    <div class="eyebrow">
+      <span class="tatala"><svg width="18" height="18" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M20 2 L38 20 L20 38 L2 20 Z"/><path d="M20 10 L30 20 L20 30 L10 20 Z"/><circle cx="20" cy="20" r="3" fill="currentColor" stroke="none"/></g></svg></span>
+      美食地圖
+    </div>
+    <h2 class="sec-title">沿著環島公路，部落一站一站吃</h2>
+    <p class="sec-desc">蘭嶼店家常因食材賣完提早收攤，想去的店建議先看粉專公告或直接打電話問。以下依環島動線由椰油排到野銀。</p>
+
+    <div class="food-route">
+      <span class="fr-node">椰油</span><span class="fr-arrow">→</span>
+      <span class="fr-node">紅頭</span><span class="fr-arrow">→</span>
+      <span class="fr-node">朗島（民宿）</span><span class="fr-arrow">→</span>
+      <span class="fr-node">東清</span><span class="fr-arrow">→</span>
+      <span class="fr-node">野銀</span>
+    </div>
+
+    <div id="food-list"></div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--navy-deep);">
+  <svg viewBox="0 0 1200 50" preserveAspectRatio="none"><path d="M0,25 C200,0 400,50 600,25 C800,0 1000,50 1200,25 L1200,50 L0,50 Z" fill="var(--paper)" style="transform:scaleY(-1); transform-origin:center;"/></svg>
+</div>
+
+<!-- ============ RAINY DAY PLAN ============ -->
+<section class="rain-section" id="rain">
+  <div class="wrap">
+    <div class="eyebrow">☔ Day 2 降雨機率 60%</div>
+    <h2 class="sec-title">雨天備案</h2>
+    <p class="sec-desc">蘭嶼的雨常是一陣一陣的海島型天氣，不用整天悶在民宿，這些地方有遮蔽也一樣有味道。</p>
+
+    <div class="rain-grid" id="rain-grid"></div>
+  </div>
+</section>
+
+<!-- ============ TIPS ============ -->
+<section id="tips">
+  <div class="wrap">
+    <div class="eyebrow">
+      <span class="tatala"><svg width="18" height="18" viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M20 2 L38 20 L20 38 L2 20 Z"/><path d="M20 10 L30 20 L20 30 L10 20 Z"/><circle cx="20" cy="20" r="3" fill="currentColor" stroke="none"/></g></svg></span>
+      出發前小提醒
+    </div>
+    <h2 class="sec-title">五個實用小提醒</h2>
+    <div class="tip-list" id="tip-list"></div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <h3>蘭嶼 · 8/29–8/30</h3>
+        <p>祝 5 人小隊玩得開心，記得防曬、多喝水，把手機留一點電拍日出。Yamo yamo（謝謝）蘭嶼！</p>
+      </div>
+      <div class="foot-stay">
+        <div class="fs-label">住宿資訊</div>
+        小豆丁民宿<br>
+        台東縣蘭嶼鄉朗島235-1號<br>
+        Check-in 14:00 · Check-out 10:00
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>此攻略為行前參考，實際天候與店家營業時間請以現場為準</span>
+      <span>Pongso no Tao</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showDay(n){
+  document.querySelectorAll('.day-tab').forEach(el=>el.classList.remove('active'));
+  document.querySelector('.day-tab[data-day="'+n+'"]').classList.add('active');
+  document.querySelectorAll('.timeline').forEach(el=>el.classList.remove('active'));
+  document.getElementById('timeline-'+n).classList.add('active');
+}
+
+// ---------------- 景點資料 ----------------
+const spots = [
+  {n:'01', name:'蘭嶼氣象觀測站', desc:'全島制高點，日出、日落、夜景都適合。建議比 Google 日出時間提早一小時到場卡位。', tags:['日出','制高點']},
+  {n:'02', name:'東清秘境', desc:'珊瑚礁環繞的天然游泳池，海水由淺入深、清澈見底，退潮時最美。', tags:['秘境','需穿鞋']},
+  {n:'03', name:'乳頭山步道', desc:'海拔約 60 公尺，木棧道往返約 30–40 分鐘，山頂可眺望東清灣與情人洞。', tags:['步道']},
+  {n:'04', name:'情人洞 · 燕子口', desc:'天然海蝕洞如海上拱門，洞口望出去是一片藍；燕子口又稱一線天，入口較隱密。', tags:['拍照']},
+  {n:'05', name:'軍艦岩', desc:'外形酷似軍艦的礁岩小島，周邊海底生態豐富，是浮潛看小丑魚的熱點，也適合看日出。', tags:['浮潛','日出']},
+  {n:'06', name:'雙獅岩', desc:'環島必經地標，兩塊礁岩神似臥獅相望，順路停留拍照即可。', tags:['地標']},
+  {n:'07', name:'青青草原', desc:'西南方的草原步道，沿路風景漸開闊，走到底是離日落最近的地方，金黃色夕陽灑滿整片草原。', tags:['日落']},
+  {n:'08', name:'野銀冷泉', desc:'淡水伏流與海水交會形成的天然冷泉，環島途中消暑戲水的好地方，也能觀察小魚與青苔生態。', tags:['戲水']},
+  {n:'09', name:'野銀部落地下屋', desc:'達悟族傳統地下屋聚落，順著小徑參觀即可，請勿擅自進入民宅或地下屋內部。', tags:['文化','請勿擅入']},
+  {n:'10', name:'開元港', desc:'蘭嶼主要港口，日落時分海面波光粼粼，旁邊就是小七冰店，是環島後放鬆收尾的好地方。', tags:['港口']},
+];
+const spotGrid = document.getElementById('spot-grid');
+spots.forEach(s=>{
+  const chipHtml = s.tags.map(t=>`<span class="spot-chip${t.includes('請勿')||t.includes('需')?' warn':''}">${t}</span>`).join('');
+  spotGrid.innerHTML += `
+    <div class="spot-card">
+      <div class="spot-num">${s.n}</div>
+      <div class="spot-img"></div>
+      <div class="spot-body">
+        <h4>${s.name}</h4>
+        <p>${s.desc}</p>
+        <div class="spot-meta">${chipHtml}</div>
+      </div>
+    </div>`;
+});
+
+// ---------------- 美食資料 ----------------
+const villages = [
+  {name:'椰油部落', note:'機車租借、便利商店都集中在這，環島起點與終點', items:[
+    {name:'阿東飛魚刈包', desc:'蘭嶼特產飛魚做成刈包，全蘭嶼唯一吃得到的混血小吃。', time:'午後供餐'},
+    {name:'開元小吃店', desc:'在地家常菜，海鮮炒麵、炒飯是熱門選項。', time:''},
+    {name:'島民冰菓店', desc:'手工芋頭冰淇淋、焦糖煉乳刨冰，店裡還有 4 隻哈士奇陪吃冰。', time:'10:30–18:30'},
+    {name:'小七冰店', desc:'開元港旁三樓半戶外座位，海景第一排吃冰。', time:''},
+  ]},
+  {name:'紅頭部落', note:'蘭嶼氣象站、機場所在地', items:[
+    {name:'阿力給早餐', desc:'蘭嶼紅頭必吃早餐，招牌飛魚飯糰每天限量 60 顆，一人限購 1 顆。', time:'限量供應'},
+    {name:'蘭嶼商店（徐媽媽的店）', desc:'在地雜貨與伴手禮，飛魚乾、醃漬小菜都能買。', time:'09:00–21:30'},
+  ]},
+  {name:'東清部落', note:'美食最集中的部落，也是唯二有 24 小時超商的地方', items:[
+    {name:'人魚和貓', desc:'開業超過 15 年的簡餐店，香草雞腿排、招牌米酒奶茶必點，可以跟店貓玩。', time:'11:00–14:30 / 17:30起'},
+    {name:'東清以斯拉偏泰式料理', desc:'海景第一排泰式餐廳，招牌泰式烤肉飯、涼拌青木瓜。', time:'二樓用餐'},
+    {name:'東清夜市', desc:'觀光季限定夜市，小米甜甜圈、有機地瓜餅、醃飛魚都在這。', time:'15:00–22:00（觀光季）'},
+    {name:'葵珈琲 AOI Coffee', desc:'不起眼的太平洋岸小咖啡館，生意卻很好，適合坐下來喝杯手沖。', time:''},
+  ]},
+  {name:'野銀部落', note:'傳統地下屋聚落', items:[
+    {name:'1984鐵皮屋', desc:'在地人口袋名單的早午餐專賣店，環島路過野銀時可以順路吃。', time:'06:30–13:00'},
+  ]},
+];
+const foodList = document.getElementById('food-list');
+villages.forEach(v=>{
+  const items = v.items.map(i=>`
+    <div class="food-item">
+      <div class="fi-name">${i.name}</div>
+      <div class="fi-desc">${i.desc}</div>
+      ${i.time?`<div class="fi-time">${i.time}</div>`:''}
+    </div>`).join('');
+  foodList.innerHTML += `
+    <div class="village-block">
+      <h3>${v.name}</h3>
+      <div class="v-note">${v.note}</div>
+      <div class="food-list">${items}</div>
+    </div>`;
+});
+
+// ---------------- 雨天備案資料 ----------------
+const rainPlans = [
+  {icon:'1', title:'部落遊客中心 / 文化館', desc:'室內認識達悟族拼板舟、飛魚文化與傳統工藝，適合當作認識蘭嶼的第一站。'},
+  {icon:'2', title:'咖啡館 / 半戶外餐廳續攤', desc:'人魚和貓、葵珈琲都有遮蔽空間，點杯米酒奶茶或手沖咖啡，坐著看雨聊天也很蘭嶼。'},
+  {icon:'3', title:'野銀地下屋聚落散步', desc:'地下屋本身有遮蔽、巷弄也不寬，撐傘慢慢走看傳統建築，注意不要擅闖民宅。'},
+  {icon:'4', title:'民宿發呆亭 + 桌遊時間', desc:'小豆丁民宿有景觀窗台與公共空間，帶副牌或桌遊，看海聽雨也是一種行程。'},
+  {icon:'5', title:'伴手禮採買', desc:'椰油、紅頭的雜貨店都在室內，趁雨天把飛魚乾、地瓜酥、手工藝品一次採買齊全。'},
+  {icon:'6', title:'機車環島慢慢繞（小雨可行）', desc:'備好雨衣，小雨時仍可低速環島欣賞雲霧繚繞的山海景色，注意路滑減速慢行。'},
+];
+const rainGrid = document.getElementById('rain-grid');
+rainPlans.forEach(r=>{
+  rainGrid.innerHTML += `
+    <div class="rain-card">
+      <div class="rc-icon">${r.icon}</div>
+      <h4>${r.title}</h4>
+      <p>${r.desc}</p>
+    </div>`;
+});
+
+// ---------------- 提醒資料 ----------------
+const tips = [
+  '達悟族傳統文化中，部分洞穴、地下屋、拼板舟屬於<b>部落禁忌地或私人物品</b>，參觀時保持安靜、不擅自進入或觸碰。',
+  '機車環島請<b>戴安全帽、減速慢行</b>，山羊、螃蟹常會突然穿越馬路，夜間騎車務必開燈。',
+  '海邊、秘境多為<b>珊瑚礁地形</b>，務必穿著防滑鞋或溯溪鞋，並注意浪況與退潮時間。',
+  '蘭嶼<b>紫外線強</b>，防曬乳、帽子、太陽眼鏡缺一不可，浮潛時建議選用海洋友善防曬。',
+  '店家常因<b>食材售完提早打烊</b>，想吃的店建議提前致電或查詢粉專營業狀況。',
+];
+const tipList = document.getElementById('tip-list');
+tips.forEach((t,i)=>{
+  tipList.innerHTML += `
+    <div class="tip-item">
+      <div class="tip-mark">${i+1}</div>
+      <p>${t}</p>
+    </div>`;
+});
+</script>
+
+</body>
+</html>
